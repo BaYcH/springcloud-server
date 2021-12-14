@@ -1,7 +1,7 @@
 package com.bayc.springcloud.security.service;
 
 import com.alibaba.fastjson.JSON;
-import com.bayc.springcloud.core.model.constant.ErrorMessages;
+import com.bayc.springcloud.core.model.constant.ConstantMessages;
 import com.bayc.springcloud.core.model.constant.RedisKeys;
 import com.bayc.springcloud.core.model.oauth2.AuthorizedClient;
 import com.bayc.springcloud.security.util.RedisUtil;
@@ -29,11 +29,11 @@ public class ClientServiceImpl implements ClientDetailsService {
     @Override
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
         if (!redisUtil.hasKey(RedisKeys.SSO_CLIENT_INFO)) {
-            throw new ClientRegistrationException(MessageFormat.format(ErrorMessages.CLIENT_NOT_FOUND, clientId));
+            throw new ClientRegistrationException(MessageFormat.format(ConstantMessages.CLIENT_NOT_FOUND, clientId));
         }
         Object clientInfo = redisUtil.hashGet(RedisKeys.SSO_CLIENT_INFO, clientId);
         if (null == clientInfo) {
-            throw new ClientRegistrationException(MessageFormat.format(ErrorMessages.CLIENT_NOT_FOUND, clientId));
+            throw new ClientRegistrationException(MessageFormat.format(ConstantMessages.CLIENT_NOT_FOUND, clientId));
         }
 
         AuthorizedClient authorizedClient = JSON.parseObject(clientInfo.toString(), AuthorizedClient.class);

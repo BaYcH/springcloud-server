@@ -20,7 +20,7 @@ public class ResponseUtil {
         ObjectMapper mapper = new ObjectMapper();
         PrintWriter writer = null;
         response.setStatus(HttpStatus.OK.value());
-        response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         try {
             writer = response.getWriter();
             mapper.writeValue(writer, result);

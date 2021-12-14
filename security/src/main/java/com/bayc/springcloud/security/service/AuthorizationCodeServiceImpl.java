@@ -1,7 +1,7 @@
 package com.bayc.springcloud.security.service;
 
 import com.alibaba.fastjson.JSON;
-import com.bayc.springcloud.core.model.constant.ErrorMessages;
+import com.bayc.springcloud.core.model.constant.ConstantMessages;
 import com.bayc.springcloud.core.model.constant.RedisKeys;
 import com.bayc.springcloud.security.exception.AuthorizationCodeCreateError;
 import com.bayc.springcloud.security.util.RedisUtil;
@@ -41,7 +41,7 @@ public class AuthorizationCodeServiceImpl implements AuthorizationCodeServices {
             code = generator.generate();
             count++;
             if (count > 20) {
-                throw new AuthorizationCodeCreateError(ErrorMessages.AUTHORIZATION_CODE_CREATE_ERROR);
+                throw new AuthorizationCodeCreateError(ConstantMessages.AUTHORIZATION_CODE_CREATE_ERROR);
             }
         }
         redisUtil.set(MessageFormat.format(RedisKeys.SSO_CLIENT_AUTHORIZATION_CODE, code), JSON.toJSONString(SerializationUtils.serialize(authentication)), AuthorizationCodeTime);

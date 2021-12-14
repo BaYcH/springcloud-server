@@ -17,8 +17,8 @@ spring:
       enabled: true
       routes:
         - id: route-custom-server
-          url: lb://resource
+          uri: lb://resource
           predicates:
-            - Path=/resource/**
+            - Path=/api/**
           filters:
             - StripPrefix=1

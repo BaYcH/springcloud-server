@@ -56,13 +56,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe()
                 .alwaysRemember(true)
-                .and()
+//                .and()
                 //.addLogoutHandler(new TokenLogoutHandler(tokenManager))
                 //.addFilter(new TokenLoginFilter(authenticationManager()))
                 //.addFilter(new TokenAuthenticationFilter(authenticationManager()))
-                .formLogin()
-                .loginPage("/auth/login")
-                .loginProcessingUrl("/auth/authorize");
+//                .formLogin()
+//                .loginPage("/auth/login")
+//                .loginProcessingUrl("/auth/authorize");
         ;
         http.httpBasic().disable();
     }
@@ -70,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         // 不起用Spring Security
-        web.ignoring().antMatchers("/testa/**");
+        //web.ignoring().antMatchers("/testa/**");
     }
 
     @Bean("authenticationManager")
